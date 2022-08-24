@@ -67,7 +67,7 @@ public class SentimentAnalyzer {
             }
 
             for (String negOpinionWord : negOpinionWords) {
-                pattern = negOpinionWord + feature;
+                pattern = negOpinionWord + " " + feature;
                 if (sentence.contains(pattern)) {
                     return -1;
                 }
@@ -79,6 +79,8 @@ public class SentimentAnalyzer {
 
     public static void main(String[] args) {
         String review = "Haven't been here in years! Fantastic service and the food was delicious! Definetly will be a frequent flyer! Francisco was very attentive";
+        String review2 = "Not only was their food delicious, but I must say that the stars are more for excellent service!";
+        String review3 = "Sorry OG, but you just lost some loyal customers. Horrible service, no smile or greeting just attitude. The breadsticks were stale and burnt, appetizer was cold and the food came out before the salad.";
 
         String[][] featureSet = {
                 { "ambiance", "ambience", "atmosphere", "decor" },
@@ -90,7 +92,7 @@ public class SentimentAnalyzer {
                 "delicious" };
         String[] negOpinionWords = { "slow", "bad", "horrible", "awful", "unprofessional", "poor" };
 
-        int[] featureOpinions = detectProsAndCons(review, featureSet, posOpinionWords, negOpinionWords);
+        int[] featureOpinions = detectProsAndCons(review3, featureSet, posOpinionWords, negOpinionWords);
         System.out.println("Opinions on Features: " + Arrays.toString(featureOpinions));
     }
 }
